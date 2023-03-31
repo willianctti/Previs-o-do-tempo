@@ -1,0 +1,50 @@
+Registro de como esse projeto foi feito. Willian Nicoletti, 2023.
+
+Primeiro, criei o HTML e o estilo básico da pag. Fiquei em duvida
+se usava apenas o CSS ou o SCSS. Também, emtre JS e TS. No futuro,
+trarei uma versão desse app em SCSS + TS.
+
+
+Depois da base, criei uma const com a minha key
+
+
+function para pegar o click da busca e dentro da função
+uma const que pega o dado que foi digitado:
+
+function buttonClick() {
+    const cidade = document.querySelector('.input-cidade').value
+
+    console.log(input)
+}
+
+
+
+
+agora, criei uma função assíncrona que busca a informação do input no servidor 
+da API. Lembrando, usando o await para aguardar a informação vir da API
+antes de prosseguir.
+
+async function buscarCidade(cidade)  {
+    const dados = await fetch("https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}")
+}
+
+no fim, utilizei o .then e uma arrow function para transformar a resposta para 
+JSON. Utilizei o &lang=pt_br para os dados virem em português.
+
+
+
+
+
+criei uma função que retornará os dados para a tela.
+
+function returnData(dados) {
+    document.querySelector('.cidade').innerHTML = "Tempo em " + dados.name
+    document.querySelector('#graus').innerHTML = Math.floor(dados.main.temp) +"°C"
+    document.querySelector('#nuvens').innerHTML = dados.weather[0].description
+    document.querySelector('#umidade').innerHTML = "Umidade " + dados.main.humidity + "%"
+}
+
+
+e foi isso. 
+
+Projeto simples feito com JavaScript, HTML5 e CSS3.
